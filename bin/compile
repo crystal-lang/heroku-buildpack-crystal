@@ -5,9 +5,9 @@ CACHE_DIR=$2
 ENV_DIR=$3
 
 # Install Crystal
-curl http://dist.crystal-lang.org/apt/setup.sh | bash
-apt-get install crystal
+wget https://github.com/manastech/crystal/releases/download/0.5.3/crystal-0.5.3-1-linux-x86_64.tar.gz
+tar xfz crystal-0.5.3-1-linux-x86_64.tar.gz -C /tmp
 
 cd $BUILD_DIR
-crystal deps
-crystal build src/main.cr --release
+/tmp/crystal-0.5.3-1/bin/crystal deps
+/tmp/crystal-0.5.3-1/bin/crystal build src/main.cr --release
