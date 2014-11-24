@@ -3,11 +3,17 @@
 BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
+CRYSTAL_URL=http://dist.crystal-lang.org/crystal-latest-linux-x86_64.tar.gz
+CRYSTAL_DIR=/tmp/crystal
 
 # Install Crystal
-wget -q https://github.com/manastech/crystal/releases/download/0.5.3/crystal-0.5.3-1-linux-x86_64.tar.gz
-tar xfz crystal-0.5.3-1-linux-x86_64.tar.gz -C /tmp
+echo "-----> Installing Crystal"
+mkdir -p $CRYSTAL_DIR
+curl -sL $CRYSTAL_URL | tar xz -C $CRYSTAL_DIR --strip-components=1
 
+# Build the project
 cd $BUILD_DIR
-/tmp/crystal-0.5.3-1/bin/crystal deps
-/tmp/crystal-0.5.3-1/bin/crystal build src/main.cr --release
+echo "-----> Installing Dependencies"
+$CRYSTAL_DIR/bin/crystal deps
+echo "-----> Compiling src/main.cr"
+$CRYSTAL_DIR/bin/crystal build src/main.cr --release
