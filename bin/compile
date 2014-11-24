@@ -1,11 +1,11 @@
 #!/bin/bash
 
-BUILD_DIR = $1
-CACHE_DIR = $2
-ENV_DIR = $3
+BUILD_DIR=$1
+CACHE_DIR=$2
+ENV_DIR=$3
 
 # Install Crystal
-curl http://dist.crystal-lang.org/apt/setup.sh | sudo bash
+curl http://dist.crystal-lang.org/apt/setup.sh | bash
 apt-get install crystal
 
 cd $BUILD_DIR
