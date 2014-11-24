@@ -14,6 +14,7 @@ curl -sL $CRYSTAL_URL | tar xz -C $CRYSTAL_DIR --strip-components=1
 # Build the project
 cd $BUILD_DIR
 echo "-----> Installing Dependencies"
+echo "-----> Using `git --version`"
 $CRYSTAL_DIR/bin/crystal deps
 echo "-----> Compiling src/main.cr"
 $CRYSTAL_DIR/bin/crystal build src/main.cr --release
