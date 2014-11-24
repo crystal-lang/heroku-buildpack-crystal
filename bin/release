@@ -4,5 +4,5 @@ cat << EOF
 ---
 addons:
 default_process_types:
-  web: ./main --port $PORT
+  web: ./main --port \$PORT
 EOF
