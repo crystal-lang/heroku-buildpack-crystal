@@ -5,6 +5,7 @@ CACHE_DIR=$2
 ENV_DIR=$3
 CRYSTAL_URL=http://dist.crystal-lang.org/crystal-latest-linux-x86_64.tar.gz
 CRYSTAL_DIR=/tmp/crystal
+unset GIT_DIR
 
 # Install Crystal
 echo "-----> Installing Crystal"
@@ -14,7 +15,6 @@ curl -sL $CRYSTAL_URL | tar xz -C $CRYSTAL_DIR --strip-components=1
 # Build the project
 cd $BUILD_DIR
 echo "-----> Installing Dependencies"
-echo "-----> Using `git --version`"
 $CRYSTAL_DIR/bin/crystal deps
 echo "-----> Compiling src/main.cr"
 $CRYSTAL_DIR/bin/crystal build src/main.cr --release
