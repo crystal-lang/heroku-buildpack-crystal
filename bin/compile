@@ -20,5 +20,5 @@ if [ -f Projectfile ]; then
   $CRYSTAL_DIR/bin/crystal deps
 fi
 
-echo "-----> Compiling src/main.cr"
-$CRYSTAL_DIR/bin/crystal build src/main.cr --release
+echo "-----> Compiling app.cr"
+$CRYSTAL_DIR/bin/crystal build app.cr --release
