@@ -10,8 +10,7 @@ unset GIT_DIR
 # Install Crystal
 echo "-----> Installing Crystal"
 mkdir -p $CRYSTAL_DIR
-cd $CRYSTAL_DIR
-curl -sL $CRYSTAL_URL | tar xz --strip-component=1
+curl -sL $CRYSTAL_URL | tar xz -C $CRYSTAL_DIR --strip-component=1
 
 # Build the project
 cd $BUILD_DIR
