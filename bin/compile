@@ -21,9 +21,7 @@ if [ -f Projectfile ]; then
 fi
 
 echo "-----> CRYSTAL_DIR"
-echo $(ls $CRYSTAL_DIR)
-echo "-----> BUILD_DIR"
-echo $(ls)
+echo $(ls $CRYSTAL_DIR/bin)
 
 echo "-----> Compiling app.cr"
 $CRYSTAL_DIR/bin/crystal build app.cr --release
