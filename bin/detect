@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -f $1/src/main.cr ]; then
+if [ -f $1/Projectfile ]; then
   echo "Crystal"
   exit 0
 else
