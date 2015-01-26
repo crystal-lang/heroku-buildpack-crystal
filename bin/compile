@@ -10,7 +10,7 @@ unset GIT_DIR
 # Install Crystal
 echo "-----> Installing Crystal"
 mkdir -p $CRYSTAL_DIR
-curl -sL $CRYSTAL_URL | tar xz -C $CRYSTAL_DIR --strip-components=1
+curl -sL $CRYSTAL_URL | tar xz -C $CRYSTAL_DIR
 
 # Build the project
 cd $BUILD_DIR
@@ -19,9 +19,6 @@ if [ -f Projectfile ]; then
   echo "-----> Installing Dependencies"
   $CRYSTAL_DIR/bin/crystal deps
 fi
-
-echo "-----> CRYSTAL_DIR"
-echo $(ls $CRYSTAL_DIR/bin)
 
 echo "-----> Compiling app.cr"
 $CRYSTAL_DIR/bin/crystal build app.cr --release
