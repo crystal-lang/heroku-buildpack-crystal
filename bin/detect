@@ -1,8 +1,4 @@
 #!/bin/bash
 
-if [ -f $1/src/main.cr ]; then
-  echo "Crystal"
-  exit 0
-else
-  exit 1
-fi
+echo "Crystal"
+exit 0
