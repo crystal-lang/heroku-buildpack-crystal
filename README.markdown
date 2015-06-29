@@ -10,4 +10,4 @@ $ heroku create myapp --buildpack https://github.com/zamith/heroku-buildpack-cry
 In order for the buildpack to work properly you should have a `Projectfile`
 file, as it is how it will detect that your app is a Crystal app.
 
-To learn more about using custom buildpacks in Heroku, read [theirs docs](https://devcenter.heroku.com/articles/third-party-buildpacks#using-a-custom-buildpack).
+To learn more about using custom buildpacks in Heroku, read [their docs](https://devcenter.heroku.com/articles/third-party-buildpacks#using-a-custom-buildpack).
