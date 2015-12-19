@@ -3,7 +3,7 @@
 BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
-CRYSTAL_URL="https://github.com/manastech/crystal/releases/download/0.9.0/crystal-0.9.0-1-linux-x86_64.tar.gz"
+CRYSTAL_URL="https://github.com/manastech/crystal/releases/download/0.9.1/crystal-0.9.1-1-linux-x86_64.tar.gz"
 CRYSTAL_DIR=/tmp/crystal
 unset GIT_DIR
 
