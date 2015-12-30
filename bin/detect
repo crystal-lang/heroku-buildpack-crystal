@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -f $1/Projectfile ]; then
+if [ -f $1/shard.yml ]; then
   echo "Crystal"
   exit 0
 else
