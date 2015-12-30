@@ -14,7 +14,7 @@ To learn more about using custom buildpacks in Heroku, read [their docs](https:/
 
 ## Older versions of Crystal
 
-If you have and older version of Crystal (`>= 0.9`), that uses the old
+If you have and older version of Crystal (`<= 0.9`), that uses the old
 `Projectfile` way of handling dependencies, you can use
 [version 1.0](https://github.com/zamith/heroku-buildpack-crystal/tree/v1.0.0) of
 the buildpack.
