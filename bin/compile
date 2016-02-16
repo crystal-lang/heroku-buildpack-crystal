@@ -36,10 +36,14 @@ if [ -f shard.yml ]; then
   echo "-----> Installing Dependencies"
   $CRYSTAL_DIR/bin/crystal deps
 
-  eval $(parse_yaml shard.yml "shard_")
-
-  echo "-----> Compiling src/${shard_name}.cr (auto-detected from shard.yml)"
-  $CRYSTAL_DIR/bin/crystal build src/${shard_name}.cr --release -o app
+  if [ -f app.cr ]; then
+    echo "-----> Compiling app.cr (overriden - app.cr exists)"
+    $CRYSTAL_DIR/bin/crystal build app.cr --release
+  else
+    eval $(parse_yaml shard.yml "shard_")
+    echo "-----> Compiling src/${shard_name}.cr (auto-detected from shard.yml)"
+    $CRYSTAL_DIR/bin/crystal build src/${shard_name}.cr --release -o app
+  fi
 else
   echo "-----> Compiling app.cr (defaulted - set name in shard.yml to override)"
   $CRYSTAL_DIR/bin/crystal build app.cr --release
