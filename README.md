@@ -14,6 +14,8 @@ The default behaviour is to use the [latest crystal release](https://github.com/
 
 To learn more about using custom buildpacks in Heroku, read [their docs](https://devcenter.heroku.com/articles/third-party-buildpacks#using-a-custom-buildpack).
 
+See also this blog post: http://crystal-lang.org/2016/05/26/heroku-buildpack.html
+
 ## Older versions of Crystal
 
 If you have and older version of Crystal (`<= 0.9`), that uses the old
