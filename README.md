@@ -18,8 +18,8 @@ as it is how it will detect that your app is a Crystal app.
 
 Your application has to listen on a port defined by Heroku. It is given to you
 through the command line option `--port` and the environment variable `PORT`
-(accessible through `ENV["PORT"]` in Crystal). Usually you should not have to
-worry about this.
+(accessible through `ENV["PORT"]` in Crystal). However, most web frameworks
+should handle this for you.
 
 ## More info
 
