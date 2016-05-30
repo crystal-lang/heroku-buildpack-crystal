@@ -18,7 +18,8 @@ root directory with the version that should be used (e.g. `0.17.1`).
 To learn more about how to deploy a Crystal application to Heroku, read [our
 blog post](http://crystal-lang.org/2016/05/26/heroku-buildpack.html).
 
-HTTP port comes from command line option `--port` or from `ENV["PORT"]`.
+Your application has to listen on a port defined by Heroku.
+It is given to you through the command line option `--port` and the environment variable `PORT` (accessible through `ENV["PORT"]` in Crystal).
 
 ## Older versions of Crystal
 
