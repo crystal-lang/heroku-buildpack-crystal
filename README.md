@@ -18,6 +18,8 @@ root directory with the version that should be used (e.g. `0.17.1`).
 To learn more about how to deploy a Crystal application to Heroku, read [our
 blog post](http://crystal-lang.org/2016/05/26/heroku-buildpack.html).
 
+HTTP port comes from command line option `--port` or from `ENV["PORT"]`.
+
 ## Older versions of Crystal
 
 If you have and older version of Crystal (`<= 0.9`), that uses the old
