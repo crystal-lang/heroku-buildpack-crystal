@@ -49,7 +49,7 @@ cd $BUILD_DIR
 
 if [ -f shard.yml ]; then
   echo "-----> Installing Dependencies"
-  $CRYSTAL_DIR/bin/crystal deps
+  $CRYSTAL_DIR/bin/crystal deps --production
 
   if [ -f app.cr ]; then
     echo "-----> Compiling app.cr (using old behaviour, app.cr exists - ignoring shard.yml)"
