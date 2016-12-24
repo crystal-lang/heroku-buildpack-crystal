@@ -1,0 +1,6 @@
+language: crystal
+sudo: required
+services:
+  - docker
+script:
+  - make test

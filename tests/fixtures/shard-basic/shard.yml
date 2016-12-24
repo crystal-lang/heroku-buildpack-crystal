@@ -1,0 +1,9 @@
+name: shard-basic
+version: 0.1.0
+authors:
+  - Matthew Fisher <mfisher@fishworks.io>
+targets:
+  heroku:
+    main: src/main.cr
+crystal: 0.20.1
+license: Apache-2.0
