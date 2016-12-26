@@ -48,20 +48,14 @@ PATH="${PATH}:${CRYSTAL_DIR}/bin"
 # Build the project
 cd $BUILD_DIR
 
-if [ -f shard.yml ]; then
-  echo "-----> Installing Dependencies"
-  crystal deps --production
+echo "-----> Installing Dependencies"
+crystal deps --production
 
-  if [ -f app.cr ]; then
-    echo "-----> Compiling app.cr (using old behaviour, app.cr exists - ignoring shard.yml)"
-    crystal build app.cr --release
-  else
-    eval $(parse_yaml shard.yml "shard_")
-    echo "-----> Compiling src/${shard_name}.cr (auto-detected from shard.yml)"
-    crystal build src/${shard_name}.cr --release -o app
-  fi
-else
-  echo "-----> Compiling app.cr (create shard.yml to override, learn more: https://github.com/ysbaddaden/shards)"
+if [ -f app.cr ]; then
+  echo "-----> Compiling app.cr (using old behaviour, app.cr exists - ignoring shard.yml)"
   crystal build app.cr --release
+else
+  eval $(parse_yaml shard.yml "shard_")
+  echo "-----> Compiling src/${shard_name}.cr (auto-detected from shard.yml)"
+  crystal build src/${shard_name}.cr --release -o app
 fi
-
