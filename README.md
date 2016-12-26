@@ -21,6 +21,11 @@ through the command line option `--port` and the environment variable `PORT`
 (accessible through `ENV["PORT"]` in Crystal). However, most web frameworks
 should handle this for you.
 
+## Testing
+
+To test a change to this buildpack, write a unit test in `tests/run` that asserts your change and
+run `make test` to ensure the change works as intended and does not break backwards compatibility.
+
 ## More info
 
 To learn more about how to deploy a Crystal application to Heroku, read
