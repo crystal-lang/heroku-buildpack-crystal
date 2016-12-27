@@ -10,6 +10,8 @@ finished() {
     echo "done"
 }
 
+CURL="curl -s -L --retry 15 --retry-delay 2" # retry for up to 30 seconds
+
 # YAML parser from https://gist.github.com/pkuczynski/8665367
 parse_yaml() {
    local prefix=$2
@@ -41,7 +43,7 @@ if [ -f $BUILD_DIR/.crystal-version ]; then
   CRYSTAL_VERSION=`cat $BUILD_DIR/.crystal-version | tr -d '\012'`
   CRYSTAL_VERSION_REASON='due to .crystal-version file'
 else
-  CRYSTAL_VERSION=`curl -s https://api.github.com/repos/crystal-lang/crystal/releases/latest | json_value tag_name 1 | tr -d '\012'`
+  CRYSTAL_VERSION=`${CURL} https://api.github.com/repos/crystal-lang/crystal/releases/latest | json_value tag_name 1 | tr -d '\012'`
   CRYSTAL_VERSION_REASON='due to latest release at https://github.com/crystal-lang/crystal'
 fi
 
@@ -52,7 +54,7 @@ unset GIT_DIR
 # Install Crystal
 mkdir -p $CRYSTAL_DIR
 start "Installing Crystal ($CRYSTAL_VERSION $CRYSTAL_VERSION_REASON)"
-  curl -sL $CRYSTAL_URL | tar xz -C $CRYSTAL_DIR --strip-component=1
+  ${CURL} $CRYSTAL_URL | tar xz -C $CRYSTAL_DIR --strip-component=1
 finished
 PATH="${PATH}:${CRYSTAL_DIR}/bin"
 
