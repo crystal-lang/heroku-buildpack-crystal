@@ -1,5 +1,15 @@
 #!/bin/bash
 
+steptxt="----->"
+
+start() {
+    echo -n "$steptxt $@... "
+}
+
+finished() {
+    echo "done"
+}
+
 CURL="curl -s -L --retry 15 --retry-delay 2" # retry for up to 30 seconds
 
 # YAML parser from https://gist.github.com/pkuczynski/8665367
@@ -42,22 +52,26 @@ CRYSTAL_DIR=/tmp/crystal
 unset GIT_DIR
 
 # Install Crystal
-echo "-----> Installing Crystal ($CRYSTAL_VERSION $CRYSTAL_VERSION_REASON)"
 mkdir -p $CRYSTAL_DIR
-${CURL} $CRYSTAL_URL | tar xz -C $CRYSTAL_DIR --strip-component=1
+start "Installing Crystal ($CRYSTAL_VERSION $CRYSTAL_VERSION_REASON)"
+  ${CURL} $CRYSTAL_URL | tar xz -C $CRYSTAL_DIR --strip-component=1
+finished
 PATH="${PATH}:${CRYSTAL_DIR}/bin"
 
 # Build the project
 cd $BUILD_DIR
 
-echo "-----> Installing Dependencies"
-crystal deps --production
+start "Installing Dependencies"
+  crystal deps --production
+finished
 
 if [ -f app.cr ]; then
-  echo "-----> Compiling app.cr (using old behaviour, app.cr exists - ignoring shard.yml)"
-  crystal build app.cr --release
+  start "Compiling app.cr (using old behaviour, app.cr exists - ignoring shard.yml)"
+    crystal build app.cr --release
+  finished
 else
   eval $(parse_yaml shard.yml "shard_")
-  echo "-----> Compiling src/${shard_name}.cr (auto-detected from shard.yml)"
-  crystal build src/${shard_name}.cr --release -o app
+  start "Compiling src/${shard_name}.cr (auto-detected from shard.yml)"
+    crystal build src/${shard_name}.cr --release -o app
+  finished
 fi
