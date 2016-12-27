@@ -62,16 +62,16 @@ PATH="${PATH}:${CRYSTAL_DIR}/bin"
 cd $BUILD_DIR
 
 start "Installing Dependencies"
-  $CRYSTAL_DIR/bin/crystal deps --production
+  crystal deps --production
 finished
 
 if [ -f app.cr ]; then
   start "Compiling app.cr (using old behaviour, app.cr exists - ignoring shard.yml)"
-    $CRYSTAL_DIR/bin/crystal build app.cr --release
+    crystal build app.cr --release
   finished
 else
   eval $(parse_yaml shard.yml "shard_")
   start "Compiling src/${shard_name}.cr (auto-detected from shard.yml)"
-    $CRYSTAL_DIR/bin/crystal build src/${shard_name}.cr --release -o app
+    crystal build src/${shard_name}.cr --release -o app
   finished
 fi
