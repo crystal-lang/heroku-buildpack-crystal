@@ -31,6 +31,8 @@ run `make test` to ensure the change works as intended and does not break backwa
 To learn more about how to deploy a Crystal application to Heroku, read
 [our blog post](http://crystal-lang.org/2016/05/26/heroku-buildpack.html).
 
+See also this blog post: http://crystal-lang.org/2016/05/26/heroku-buildpack.html
+
 ## Older versions of Crystal
 
 If you have and older version of Crystal (`<= 0.9`), that uses the old
