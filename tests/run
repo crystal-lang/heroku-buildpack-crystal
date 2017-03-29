@@ -16,7 +16,7 @@ testCompileShardBasic()
   # See https://github.com/crystal-lang/shards/issues/145
   # TODO(bacongobbler): re-test this once a release with this fix is out
   # assertCaptured "Checking project with \`crystal deps check\`"
-  assertCaptured "-----> Compiling src/shard-basic.cr (auto-detected from shard.yml)"
+  assertCaptured "-----> Compiling src/main.cr (auto-detected from shard.yml)"
   assertCapturedSuccess
   assertCompiledBinaryExists
 }
