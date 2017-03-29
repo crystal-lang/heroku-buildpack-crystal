@@ -207,7 +207,7 @@ assertFileMD5()
 
 assertCompiledBinaryExists()
 {
-  local name=${1:-app}
+  local name=${1:-app.ex}
   local tgt="${compile_dir}/${name}"
   assertTrue "Compiled binary (${tgt}) exists" "[ -x ${tgt} ]"
 }
