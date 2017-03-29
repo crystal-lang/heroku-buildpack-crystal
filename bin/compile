@@ -71,7 +71,12 @@ if [ -f app.cr ]; then
   finished
 else
   eval $(parse_yaml shard.yml "shard_")
-  start "Compiling src/${shard_name}.cr (auto-detected from shard.yml)"
-    crystal build src/${shard_name}.cr --release -o app
+  if [ -n "${shard_targets_heroku_main}" ]; then
+    app_path="shard_targets_heroku_main"
+  else
+    app_path="shard_targets_${shard_name}_main"
+  fi
+  start "Compiling ${!app_path} (auto-detected from shard.yml)" 
+    crystal build ${!app_path} --release -o app
   finished
 fi
