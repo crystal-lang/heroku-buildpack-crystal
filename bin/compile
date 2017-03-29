@@ -72,6 +72,6 @@ if [ -f app.cr ]; then
 else
   eval $(parse_yaml shard.yml "shard_")
   start "Compiling src/${shard_name}.cr (auto-detected from shard.yml)"
-    crystal build src/${shard_name}.cr --release -o app
+    crystal build src/${shard_name}.cr --release -o app.ex
   finished
 fi

@@ -24,7 +24,7 @@ testCompileShardBasic()
 testReleaseShardBasic()
 {
   release "shard-basic"
-  assertCaptured "web: ./app --port \$PORT"
+  assertCaptured "web: ./app.ex --port \$PORT"
   assertCapturedSuccess
 }
 
