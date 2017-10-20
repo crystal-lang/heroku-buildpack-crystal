@@ -81,14 +81,10 @@ else
   finished
 fi
 
-start "Installing Lucky CLI\n"
+start "Setting up Lucky tasks"
 
-git clone https://github.com/luckyframework/cli.git
-cd cli
-crystal deps
-crystal build src/lucky.cr --release $NO_DEBUG_IF_AVAILABLE
 mkdir -p $BUILD_DIR/.heroku/lucky
-mv lucky $BUILD_DIR/.heroku/lucky/lucky
+crystal build tasks.cr $NO_DEBUG_IF_AVAILABLE -o $BUILD_DIR/.heroku/lucky/lucky
 
 echo "export PATH=\$PATH:\$HOME/.heroku/lucky" >> "$BUILD_DIR/.profile.d/lucky_environment.sh"
 
