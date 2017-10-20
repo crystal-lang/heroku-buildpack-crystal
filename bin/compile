@@ -86,7 +86,7 @@ start "Installing Lucky CLI\n"
 git clone https://github.com/luckyframework/cli.git
 cd cli
 crystal deps
-crystal build --release src/lucky.cr --no-debug
+crystal build src/lucky.cr --release $NO_DEBUG_IF_AVAILABLE
 mkdir -p $BUILD_DIR/.heroku/lucky
 mv lucky $BUILD_DIR/.heroku/lucky/lucky
 
