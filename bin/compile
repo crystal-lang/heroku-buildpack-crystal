@@ -69,7 +69,7 @@ finished
 
 # Compile with --no-debug if supported unless the DEBUG_ENABLE var is set
 if ! [ -n DEBUG_ENABLED ]; then
-  DEBUG_FLAGS=`crystal build --help | grep -q -- --no-debug && echo -n --no-debug`
+  DEBUG_FLAGS=`crystal build --help | grep -q -- --no-debug && echo --release -n --no-debug`
 fi
 
 if [ -f app.cr ]; then
@@ -79,6 +79,6 @@ if [ -f app.cr ]; then
 else
   eval $(parse_yaml shard.yml "shard_")
   start "Compiling src/${shard_name}.cr (auto-detected from shard.yml)"
-    crystal build src/${shard_name}.cr --release -o app $DEBUG_FLAGS
+    crystal build src/${shard_name}.cr -o app $DEBUG_FLAGS
   finished
 fi
