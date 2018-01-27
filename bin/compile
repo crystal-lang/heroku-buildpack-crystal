@@ -8,6 +8,10 @@ start() {
     echo -n "$steptxt $@... "
 }
 
+startn() {
+    echo  "$steptxt $@"
+}
+
 finished() {
     echo "done"
 }
@@ -63,7 +67,7 @@ PATH="${PATH}:${CRYSTAL_DIR}/bin"
 # Build the project
 cd $BUILD_DIR
 
-start "Installing Dependencies"
+startn "Installing Dependencies"
   crystal deps --production
 finished
 
