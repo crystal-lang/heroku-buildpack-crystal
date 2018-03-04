@@ -37,6 +37,8 @@ function json_value() {
   awk -F"[,:}]" '{for(i=1;i<=NF;i++){if($i~/\042'$KEY'\042/){print $(i+1)}}}' | tr -d ' "' | sed -n ${num}p
 }
 
+function version_gt() { test "$(printf '%s\n' "$@" | sort -V | head -n 1)" != "$1"; }
+
 BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
@@ -49,7 +51,15 @@ else
   CRYSTAL_VERSION_REASON='due to latest release at https://github.com/crystal-lang/crystal'
 fi
 
-CRYSTAL_URL=`${CURL} https://api.github.com/repos/crystal-lang/crystal/releases/tags/${CRYSTAL_VERSION} | grep 'https://github.com/crystal-lang/crystal/releases/download/.*-linux-x86_64.tar.gz' | sed 's/.*: "\(.*\)"/\1/'`
+echo $CRYSTAL_VERSION
+if version_gt $CRYSTAL_VERSION 0.24.0; then
+  echo Crystal greater than 0.24.0
+  CRYSTAL_URL=`${CURL} https://api.github.com/repos/crystal-lang/crystal/releases/tags/v${CRYSTAL_VERSION} | grep 'https://github.com/crystal-lang/crystal/releases/download/.*-linux-x86_64.tar.gz' | sed 's/.*: "\(.*\)"/\1/'`
+else
+  echo Crystal less than 0.24.0
+  CRYSTAL_URL=`${CURL} https://api.github.com/repos/crystal-lang/crystal/releases/tags/${CRYSTAL_VERSION} | grep 'https://github.com/crystal-lang/crystal/releases/download/.*-linux-x86_64.tar.gz' | sed 's/.*: "\(.*\)"/\1/'`
+fi
+
 CRYSTAL_DIR=$BUILD_DIR/.heroku/crystal
 unset GIT_DIR
 
