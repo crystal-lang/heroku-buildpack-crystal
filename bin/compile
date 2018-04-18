@@ -49,7 +49,7 @@ else
   CRYSTAL_VERSION_REASON='due to latest release at https://github.com/crystal-lang/crystal'
 fi
 
-CRYSTAL_URL=`${CURL} https://github.com/crystal-lang/crystal/releases/tags/${CRYSTAL_VERSION} | grep 'https://github.com/crystal-lang/crystal/releases/download/.*-linux-x86_64.tar.gz' | sed 's/.*: "\(.*\)"/\1/'`
+CRYSTAL_URL=`${CURL} https://github.com/crystal-lang/crystal/releases/tag/${CRYSTAL_VERSION} | grep 'https://github.com/crystal-lang/crystal/releases/download/.*-linux-x86_64.tar.gz' | sed 's/.*: "\(.*\)"/\1/'`
 CRYSTAL_DIR=$BUILD_DIR/.heroku/crystal
 unset GIT_DIR
 
