@@ -63,17 +63,21 @@ PATH="${PATH}:${CRYSTAL_DIR}/bin"
 # Build the project
 cd $BUILD_DIR
 
-start "Installing Dependencies"
-  crystal deps --production
-finished
-
 NO_DEBUG_IF_AVAILABLE=`crystal build --help | grep -q -- --no-debug && echo -n --no-debug`
 
 if [ -f app.cr ]; then
+  start "Installing Dependencies"
+    crystal deps --production
+  finished
+
   start "Compiling app.cr (using old behaviour, app.cr exists - ignoring shard.yml)"
     crystal build app.cr --release $NO_DEBUG_IF_AVAILABLE
   finished
 else
+  start "Installing Dependencies"
+    shards --production
+  finished
+
   eval $(parse_yaml shard.yml "shard_")
   start "Compiling src/${shard_name}.cr (auto-detected from shard.yml)"
     crystal build src/${shard_name}.cr --release $NO_DEBUG_IF_AVAILABLE -o app
