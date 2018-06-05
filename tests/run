@@ -10,12 +10,8 @@ testDetectShardBasic()
 testCompileShardBasic()
 {
   compile "shard-basic"
-  assertCaptured "Installing Crystal (0.20.1 due to .crystal-version file)"
-  assertCaptured "Installing Dependencies"
-  # `shards check` currently does not work with apps with no external dependencies.
-  # See https://github.com/crystal-lang/shards/issues/145
-  # TODO(bacongobbler): re-test this once a release with this fix is out
-  # assertCaptured "Checking project with \`crystal deps check\`"
+  assertCaptured "Installing Crystal (0.24.2 due to .crystal-version file)"
+  assertCaptured "Installing Dependencies (shards)"
   assertCaptured "-----> Compiling src/shard-basic.cr (auto-detected from shard.yml)"
   assertCapturedSuccess
   assertCompiledBinaryExists

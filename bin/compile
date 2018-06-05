@@ -66,7 +66,7 @@ cd $BUILD_DIR
 NO_DEBUG_IF_AVAILABLE=`crystal build --help | grep -q -- --no-debug && echo -n --no-debug`
 
 if [ -f app.cr ]; then
-  start "Installing Dependencies"
+  start "Installing Dependencies (crystal deps)"
     crystal deps --production
   finished
 
@@ -74,7 +74,7 @@ if [ -f app.cr ]; then
     crystal build app.cr --release $NO_DEBUG_IF_AVAILABLE
   finished
 else
-  start "Installing Dependencies"
+  start "Installing Dependencies (shards)"
     shards --production
   finished
 
