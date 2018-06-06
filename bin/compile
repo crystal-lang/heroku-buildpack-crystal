@@ -63,11 +63,11 @@ PATH="${PATH}:${CRYSTAL_DIR}/bin:${CRYSTAL_DIR}/embedded/bin/"
 # Build the project
 cd $BUILD_DIR
 
-NO_DEBUG_IF_AVAILABLE=`crystal build --help | grep -q -- --no-debug && echo -n --no-debug`
-
 start "Installing Dependencies"
   shards --production
 finished
+
+NO_DEBUG_IF_AVAILABLE=`crystal build --help | grep -q -- --no-debug && echo -n --no-debug`
 
 if [ -f app.cr ]; then
   start "Compiling app.cr (using old behaviour, app.cr exists - ignoring shard.yml)"
