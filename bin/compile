@@ -58,13 +58,13 @@ mkdir -p $CRYSTAL_DIR
 start "Installing Crystal ($CRYSTAL_VERSION $CRYSTAL_VERSION_REASON) from $CRYSTAL_URL"
   ${CURL} $CRYSTAL_URL | tar xz -C $CRYSTAL_DIR --strip-component=1
 finished
-PATH="${PATH}:${CRYSTAL_DIR}/bin"
+PATH="${PATH}:${CRYSTAL_DIR}/bin:${CRYSTAL_DIR}/embedded/bin/"
 
 # Build the project
 cd $BUILD_DIR
 
 start "Installing Dependencies"
-  crystal deps --production
+  shards --production
 finished
 
 NO_DEBUG_IF_AVAILABLE=`crystal build --help | grep -q -- --no-debug && echo -n --no-debug`
