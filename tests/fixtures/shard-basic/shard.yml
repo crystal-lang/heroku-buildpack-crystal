@@ -5,5 +5,5 @@ authors:
 targets:
   heroku:
     main: src/main.cr
-crystal: 0.24.2
+crystal: 0.23.1
 license: Apache-2.0
