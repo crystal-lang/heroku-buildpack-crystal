@@ -10,8 +10,8 @@ testDetectShardBasic()
 testCompileShardBasic()
 {
   compile "shard-basic"
-  assertCaptured "Installing Dependencies (shards)"
   assertCaptured "Installing Crystal (0.23.1 due to .crystal-version file)"
+  assertCaptured "Installing Dependencies"
   assertCaptured "-----> Compiling src/shard-basic.cr (auto-detected from shard.yml)"
   assertCapturedSuccess
   assertCompiledBinaryExists
