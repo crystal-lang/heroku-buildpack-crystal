@@ -24,6 +24,17 @@ testReleaseShardBasic()
   assertCapturedSuccess
 }
 
+testCompileLatestCrystal()
+{
+  compile "latest-crystal"
+  assertCaptured "Installing Crystal"
+  assertCaptured "due to latest release"
+  assertCaptured "Installing Dependencies"
+  assertCaptured "-----> Compiling src/latest-crystal.cr (auto-detected from shard.yml)"
+  assertCapturedSuccess
+  assertCompiledBinaryExists
+}
+
 # Utils
 source $(pwd)/tests/utils
 
