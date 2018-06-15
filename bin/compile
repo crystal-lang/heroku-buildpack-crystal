@@ -49,16 +49,18 @@ else
   CRYSTAL_VERSION_REASON='due to latest release at https://github.com/crystal-lang/crystal'
 fi
 
-CRYSTAL_URL=`${CURL} https://api.github.com/repos/crystal-lang/crystal/releases/tags/${CRYSTAL_VERSION} | grep 'https://github.com/crystal-lang/crystal/releases/download/.*-linux-x86_64.tar.gz' | sed 's/.*: "\(.*\)"/\1/'`
-CRYSTAL_DIR=/tmp/crystal
+TAG_NAME=`${CURL} https://api.github.com/repos/crystal-lang/crystal/releases | json_value tag_name | grep ${CRYSTAL_VERSION}`
+CRYSTAL_URL=`${CURL} https://api.github.com/repos/crystal-lang/crystal/releases/tags/${TAG_NAME} | grep 'https://github.com/crystal-lang/crystal/releases/download/.*-linux-x86_64.tar.gz' | sed 's/.*: "\(.*\)"/\1/'`
+CRYSTAL_DIR=$BUILD_DIR/.heroku/crystal
 unset GIT_DIR
 
 # Install Crystal
 mkdir -p $CRYSTAL_DIR
-start "Installing Crystal ($CRYSTAL_VERSION $CRYSTAL_VERSION_REASON) from $CRYSTAL_URL"
+start "Installing Crystal ($CRYSTAL_VERSION $CRYSTAL_VERSION_REASON) from $CRYSTAL_URL to $CRYSTAL_DIR"
   ${CURL} $CRYSTAL_URL | tar xz -C $CRYSTAL_DIR --strip-component=1
 finished
 PATH="${PATH}:${CRYSTAL_DIR}/bin:${CRYSTAL_DIR}/embedded/bin/"
+echo "export PATH=\$HOME/.heroku/crystal:\$PATH" >> "$BUILD_DIR/.profile.d/crystal_environment.sh"
 
 # Build the project
 cd $BUILD_DIR
@@ -79,3 +81,12 @@ else
     crystal build src/${shard_name}.cr --release $NO_DEBUG_IF_AVAILABLE -o app
   finished
 fi
+
+start "Setting up Lucky tasks"
+
+mkdir -p $BUILD_DIR/.heroku/lucky
+crystal build tasks.cr $NO_DEBUG_IF_AVAILABLE -o $BUILD_DIR/.heroku/lucky/lucky
+
+echo "export PATH=\$PATH:\$HOME/.heroku/lucky" >> "$BUILD_DIR/.profile.d/lucky_environment.sh"
+
+finished
