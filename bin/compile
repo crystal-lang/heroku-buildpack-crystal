@@ -60,7 +60,7 @@ start "Installing Crystal ($CRYSTAL_VERSION $CRYSTAL_VERSION_REASON) from $CRYST
   ${CURL} $CRYSTAL_URL | tar xz -C $CRYSTAL_DIR --strip-component=1
 finished
 PATH="${PATH}:${CRYSTAL_DIR}/bin:${CRYSTAL_DIR}/embedded/bin/"
-echo "export PATH=\$HOME/.heroku/crystal/bin:\$PATH" >> "$BUILD_DIR/.profile.d/crystal_environment.sh"
+echo "export PATH=\$HOME/.heroku/crystal:\$PATH" >> "$BUILD_DIR/.profile.d/crystal_environment.sh"
 
 # Build the project
 cd $BUILD_DIR
