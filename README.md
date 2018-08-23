@@ -4,7 +4,7 @@ You can create an app in Heroku with Crystal's buildpack by running the
 following command:
 
 ```bash
-$ heroku create myapp --buildpack https://github.com/crystal-lang/heroku-buildpack-crystal.git
+$ heroku create myapp --buildpack crystal-lang/crystal
 ```
 
 The default behaviour is to use the [latest crystal release](https://github.com/crystal-lang/crystal/releases/latest).
@@ -35,3 +35,11 @@ To learn more about how to deploy a Crystal application to Heroku, read
 
 If you have and older version of Crystal (`<= 0.9`), that uses the old
 `Projectfile` way of handling dependencies, please upgrade :-).
+
+## Using the edge version of the buildpack
+
+The `crystal-lang/crystal` buildpack from the [Heroku Registry](https://devcenter.heroku.com/articles/buildpack-registry) contains the latest stable version of the buildpack. If you'd like to use the latest buildpack code from this Github repository, you can set your buildpack to the Github URL:
+
+```sh-session
+heroku buildpacks:set https://github.com/crystal-lang/heroku-buildpack-crystal
+```
