@@ -63,6 +63,4 @@ PATH="${PATH}:${CRYSTAL_DIR}/bin:${CRYSTAL_DIR}/embedded/bin/"
 # Build the project
 cd $BUILD_DIR
 
-start "Compiling"
-  shards build --release --production
-finished
+shards build --release --production
