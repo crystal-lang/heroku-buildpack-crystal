@@ -7,7 +7,8 @@
 > If you wish to continue development yourself, we recommend you fork it.
 > We can also arrange to transfer ownership.
 >
-> If you have further question, please ask on https://forum.crystal-lang.org
+> If you have further questions, please reach out on on https://forum.crystal-lang.org
+> or crystal@manas.tech
 
 # Crystal Heroku Buildpack
 
