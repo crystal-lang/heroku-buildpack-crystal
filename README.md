@@ -1,3 +1,15 @@
+> [!IMPORTANT]
+> This library is no longer supported or updated by the Crystal Team,
+> therefore we have archived the repository.
+> 
+> The contents are still available readonly.
+>
+> If you wish to continue development yourself, we recommend you fork it.
+> We can also arrange to transfer ownership.
+>
+> If you have further questions, please reach out on on https://forum.crystal-lang.org
+> or crystal@manas.tech
+
 # Crystal Heroku Buildpack
 
 You can create an app in Heroku with Crystal's buildpack by running the
